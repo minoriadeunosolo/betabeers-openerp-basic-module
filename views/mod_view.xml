@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+	
+	<record model='ir.ui.view' id='betabeers_res_partner_form'>
+            <field name="name">betabeers.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+             <field name="website" position="after">
+                                 <field name="adiccion"/>
+                                 <field name="date_clean" />
+             </field>
+
+	    <xpath expr="//page[@string='Sales &amp; Purchases']" position='after'>
+	    	<page string='Charlas Betabeers'>
+	    		<field name="observaciones" />
+	    		<field name="speeches"/>
+	    	</page>
+	    </xpath>
+
+            </field>
+        </record>
+
+
+
+        <record model='ir.actions.act_window' id='betabeers_speech_act'>
+            <field name="name">Charlas Betabeers</field>
+            <field name="res_model">betabeers.speech</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph</field>
+            <field name="help" type="html">
+              <p class="oe_view_nocontent_create">
+                Click to create a new Speech
+              </p><p>
+                Manage all your speeches with
+                their related author and attendands.
+                </p>
+            </field>
+        </record>
+
+        <menuitem name="Betabeers" id="menu_root_betabeers" sequence="110"/>
+        <menuitem name="Charlas" parent="menu_root_betabeers" id="betabeers_speeches" sequence="3"/>
+        <menuitem action="betabeers_speech_act" parent="betabeers_speeches" id="betabeers_speech_model_menu"/>
+
+
+        </data>
+</openerp>
